@@ -2,7 +2,7 @@
 
 This repository is dedicated to digital modelling of the Roland RE-201. 
 
-The original folder contains a (mostly) header only library implementing four seperate digital models of a Roland RE-201, developed throughout the duration of my final year project, on the BSc Sound Engineering and Production course at Birmingham City Univesity. The models are classes which can be implemented into an audio plugin in any framework.
+The original folder contains a (mostly) header only library implementing four seperate digital models of a Roland RE-201, developed throughout the duration of my final year project, on the BSc Sound Engineering and Production course at Birmingham City University. The models are classes which can be implemented into an audio plugin in any framework.
 
 Version 2 is a significant improvement of the original and is not header only. This is dedicated to optimisations which did not fit into the time scale of my bachelors project and generally cleans up the code. This includes processing by buffer instead of sample, optimising the filter structures, adjustments to the WDF tone stack, reducing unnecessary calculations and dynamic allocation of objects and memory based on channel count. The error function tape saturation model has been omitted (because lets be honest, tape hysteresis modelling is way cooler), however the tone stack algorithm can be switched between VA and WDF by setting a bool variable in the RE201model class.
 
