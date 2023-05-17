@@ -2,7 +2,9 @@
 
 This repository is dedicated to digital modelling of the Roland RE-201. 
 
-The original folder contains a (mostly) header only library implementing four seperate digital models of a Roland RE-201, developed throughout the duration of my final year project, on the BSc Sound Engineering and Production course at Birmingham City Univesity. The models are classes which can be implemented into an audio plugin in any framework. 
+The original folder contains a (mostly) header only library implementing four seperate digital models of a Roland RE-201, developed throughout the duration of my final year project, on the BSc Sound Engineering and Production course at Birmingham City Univesity. The models are classes which can be implemented into an audio plugin in any framework.
+
+Version 2 is a significant improvement of the original and is not header only. This is dedicated to optimisations which did not fit into the time scale of my bachelors project and generally cleans up the code. This includes processing by buffer instead of sample, optimising the filter structures, adjustments to the WDF tone stack, reducing unnecessary calculations and dynamic allocation of objects and memory based on channel count. The error function tape saturation model has been omitted (because lets be honest, tape hysteresis modelling is way cooler), however the tone stack algorithm can be switched between VA and WDF by setting a bool variable in the RE201model class.
 
 The four models implemented combinations of two tape saturation and two tone stack modellings methods. One tape saturation modelling method was a static non linearity (error function) and the other was based on the hysteresis processor developed by chowdhury (2019) which calculates magnetisation based on a tape playhead position derivative approximation. The tape delay modelling between the two methods is the same, utilising three circular buffers with read times at multiple of each other, in line with the real device (Using a single buffer with multiple read heads was tested, however this appeared to generate phasing issues when multiple playheads were active). Both methods implement oversampling, albeit very inefficiently. Version 2 attempts to resolve many of those issues. 
 
@@ -10,7 +12,7 @@ The first tone stack method implemented the VA Bassman 59' filter discretised by
 
 Other perceptual characteristics have been modelled, this includes wow and flutter (although this is next on my improvements list), control ballistics (pitch increases when the repeat rate is increasing and vice versa) and tape speed dependant equalisation. 
 
-Version 2 is a significant improvement of the original. This is dedicated to optimisations which did not fit into the time scale of my bachelors project and generally cleans up the code. This includes processing by buffer instead of sample, optimising the filter structures, adjustments to the WDF tone stack, reducing unnecessary calculations and dynamic allocation of objects and memory based on channel count. The error function tape saturation model has been omitted (because lets be honest, tape hysteresis modelling is way cooler), however the tone stack algorithm can be switched between VA and WDF by setting a bool variable in the RE201model class.
+
 
 
 Included in both versions is the respective Windows VST x64 plugin and ASPIK project which can be built for Mac OS. Mac OS versions will be added shortly.
