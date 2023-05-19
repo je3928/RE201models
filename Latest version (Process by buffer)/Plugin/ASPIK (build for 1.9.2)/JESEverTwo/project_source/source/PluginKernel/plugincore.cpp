@@ -425,9 +425,6 @@ bool PluginCore::renderFXPassThrough(ProcessBlockInfo& blockInfo)
 
 			// Process buffer
 			tapemodel->ProcessBuffer(buffer, blockInfo.blockSize, blockInfo.numAudioOutChannels);
-
-			// Initialise VU meter value
-			float VUvalue = 0.0f;
 		
 					// Assign buffer outputs
 					for (int channel = 0; channel < blockInfo.numAudioOutChannels; channel++)
@@ -440,11 +437,8 @@ bool PluginCore::renderFXPassThrough(ProcessBlockInfo& blockInfo)
 							// assign current sample to output buffer
 							blockInfo.outputs[channel][sample] = currentsample;
 
-							// calculate running sum of abs of sample values
-							VUvalue += std::abs(currentsample);
-
 							// calculate moving average for meter.
-							m_fMeterValue = VUvalue / sample;
+							m_fMeterValue = std::abs(currentsample);
 						}
 					}
 				
@@ -755,7 +749,7 @@ bool PluginCore::initPluginParameters()
 	addPluginParameter(piParam);
 
 	// --- meter control: LED
-	piParam = new PluginParameter(controlID::m_fMeterValue, "LED", 10.00, 100.00, ENVELOPE_DETECT_MODE_RMS, meterCal::kLinearMeter);
+	piParam = new PluginParameter(controlID::m_fMeterValue, "LED", 10.00, 100.00, ENVELOPE_DETECT_MODE_PEAK, meterCal::kLinearMeter);
 	piParam->setBoundVariable(&m_fMeterValue, boundVariableType::kFloat);
 	addPluginParameter(piParam);
 
