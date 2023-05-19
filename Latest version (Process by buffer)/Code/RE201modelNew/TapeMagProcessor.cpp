@@ -10,7 +10,6 @@ TapeMagProcessor::~TapeMagProcessor()
 
 }
 
-// Currently only setup for OS amount of 2x, do not use for amounts higher than this yet...
 void TapeMagProcessor::Reset(float sampleRate, int numChannels, int osamount)
 {
     // Clear previous DSP objects
