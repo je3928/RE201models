@@ -2,6 +2,10 @@
 
 This repository is dedicated to digital modelling of the Roland RE-201. 
 
+![je201](https://github.com/je3928/RE201models/assets/18708942/9644962c-9a4c-43e7-b08f-e6fd71e71a1c)
+
+
+
 The original folder contains a (mostly) header only library implementing four seperate digital models of a Roland RE-201, developed throughout the duration of my final year project, on the BSc Sound Engineering and Production course at Birmingham City University. The models are classes which can be implemented into an audio plugin in any framework.
 
 Version 2 is a significant improvement of the original and is not header only. This is dedicated to optimisations which did not fit into the time scale of my bachelors project and generally cleans up the code. This includes processing by buffer instead of sample, optimising the filter structures, adjustments to the WDF tone stack, reducing unnecessary calculations and dynamic allocation of objects and memory based on channel count. The error function tape saturation model has been omitted (because lets be honest, tape hysteresis modelling is way cooler), however the tone stack algorithm can be switched between VA and WDF by setting a bool variable in the RE201model class.
@@ -11,8 +15,6 @@ The four models implemented combinations of two tape saturation and two tone sta
 The first tone stack method implemented the VA Bassman 59' filter discretised by Yeh (2006). The other tone stack was two WDF shelving filters processed in series to make up the bass and treble frequency bands. 
 
 Other perceptual characteristics have been modelled, this includes wow and flutter (although this is next on my improvements list), control ballistics (pitch increases when the repeat rate is increasing and vice versa) and tape speed dependant equalisation. 
-
-
 
 
 Included in both versions is the respective Windows VST x64 plugin and ASPIK project which can be built for Mac OS. Mac OS versions will be added shortly.
