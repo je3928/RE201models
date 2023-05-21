@@ -35,7 +35,7 @@ public:
 
     void updateParams(double cutoff, double g) {
 
-        G = map(g, 0.001, 0.9999, 0.25, 4);
+        G = g;
         C = 1 / (2 * M_PI * cutoff * R);
 
     }
@@ -95,10 +95,6 @@ private:
 
     float G = 0.0f;
 
-    float map(float x, float in_min, float in_max, float out_min, float out_max) {
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-    }
-
 
 };
 
@@ -126,7 +122,7 @@ public:
 
     void updateParams(double cutoff, double g) {
 
-        G = map(g, 0.001, 0.9999, 0.01, 4);
+        G = g;
 
         C = 1 / (2 * M_PI * cutoff * R);
     }
@@ -179,16 +175,9 @@ private:
 
     IdealVoltageSourceT<float, decltype(ser2)> vs2{ ser2 };
 
-
-
-
     float fs = 0.0f;
 
     float G = 0.0f;
-
-    float map(float x, float in_min, float in_max, float out_min, float out_max) {
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-    }
 
 
 

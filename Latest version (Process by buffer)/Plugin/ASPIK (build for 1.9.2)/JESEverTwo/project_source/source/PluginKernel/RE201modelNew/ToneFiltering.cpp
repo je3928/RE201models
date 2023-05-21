@@ -44,8 +44,8 @@ void ToneStackProcessor::UpdateParameters(float Bass, float Treble, float inputl
     }
     else if (VAorWDF)
     {
-        Bass = map(Bass, 0.f, 1.f, 0.025, 2.f);
-        Treble = map(Treble, 0.f, 1.f, 0.025, 2.f);
+        Bass = map(Bass, 0.f, 1.f, 0.025, 4.f);
+        Treble = map(Treble, 0.f, 1.f, 0.025, 4.f);
         for (int channel = 0; channel < NumChannels; channel++) 
         {
             WDFfilters[channel]->updateParams(Bass, Treble);
