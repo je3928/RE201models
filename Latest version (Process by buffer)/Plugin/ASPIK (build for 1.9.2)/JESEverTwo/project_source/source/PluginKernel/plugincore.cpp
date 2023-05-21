@@ -764,7 +764,7 @@ bool PluginCore::initPluginParameters()
 	addPluginParameter(piParam);
 
 	// --- continuous control: Input Level
-	piParam = new PluginParameter(controlID::inputLevel, "Input Level", "", controlVariableType::kFloat, 0.000000, 1.000000, 0.500000, taper::kLinearTaper);
+	piParam = new PluginParameter(controlID::inputLevel, "Input Level", "", controlVariableType::kFloat, 0.000000, 5.000000, 0.500000, taper::kLinearTaper);
 	piParam->setParameterSmoothing(false);
 	piParam->setSmoothingTimeMsec(100.00);
 	piParam->setBoundVariable(&inputLevel, boundVariableType::kFloat);
