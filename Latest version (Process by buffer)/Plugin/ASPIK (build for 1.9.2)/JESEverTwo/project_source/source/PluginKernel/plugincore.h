@@ -131,17 +131,22 @@ public:
 
 	std::unique_ptr<RE201model> tapemodel = nullptr;
 
+    // Plugin info
 	int NumChannels = 2;
-
 	float SampleRate = 48000;
 
+    // Current multi tap playhead state
 	int playheadstates[3] = { 0, 0, 0 };
 
+    // Arrays used to enable reverb or delay
 	int reverbEnabled[12] = { 0, 0 ,0 ,0 , 1, 1, 1, 1, 1, 1, 1, 1 };
 	int delayEnabled[12] = { 1, 1 ,1 ,1, 1, 1, 1, 1, 1, 1, 1, 0 };
+    
+    // OS amounts
 	int OSamount[5] = { 2, 4, 6, 8, 16};
 
 
+    // Function to apply playhead states based on mode selection
 	void applyDelaySettings() {
 
 		if (compareEnumToInt(delaySettingEnum::One, delaySetting)) {
@@ -242,8 +247,6 @@ public:
 
 
 		}
-
-
 
 	}
 

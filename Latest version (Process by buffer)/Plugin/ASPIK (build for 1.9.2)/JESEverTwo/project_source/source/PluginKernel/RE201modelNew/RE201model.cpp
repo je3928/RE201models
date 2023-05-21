@@ -11,8 +11,12 @@ RE201model::~RE201model()
 
 }
 
-void RE201model::Reset(float sampleRate, int OSamount) 
+void RE201model::Reset(float sampleRate, int OSamount, int numChannels)
 {
+    // Save channel count and sample rate
+    NumChannels = numChannels;
+    SampleRate = sampleRate;
+    
         // Initialise DSP objects
         ToneStack.reset(new ToneStackProcessor());
         TapeMag.reset(new TapeMagProcessor());
@@ -25,15 +29,12 @@ void RE201model::Reset(float sampleRate, int OSamount)
         TapeDelay->Reset(sampleRate, NumChannels);
         Reverb->Reset(sampleRate, NumChannels);
 
-     
-    
-    SampleRate = sampleRate;
-
 }
 
 void RE201model::UpdateParameters(float low, float high, float intensity, float delaytime, int playheadenabled[], int delayenabled, float delayamount, int reverbenabled, float reverbamount, float inputlevel, float wetdry) 
 {
        // Update DSP object parameters
+    
        ToneStack->UpdateParameters(low, high, inputlevel);
        TapeDelay->UpdateParameters(intensity, delaytime, playheadenabled, delayenabled, delayamount);
        Reverb->UpdateParameters(reverbenabled, reverbamount);
@@ -43,11 +44,10 @@ void RE201model::UpdateParameters(float low, float high, float intensity, float 
 }
 
 
-void RE201model::ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize, int numChannels)
+void RE201model::ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize)
 {
 
     // Save channels and block size
-    NumChannels = numChannels;
     BlockSize = blockSize;
 
     // Save copy of dry signal for reverb processing

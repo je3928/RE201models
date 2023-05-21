@@ -241,7 +241,4 @@ private:
     WDFLowShelf ls;
     WDFHighShelf hs;
 
-    
-
-
 };

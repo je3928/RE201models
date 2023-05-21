@@ -14,9 +14,9 @@ public:
     RE201model();
     ~RE201model();
 
-    void Reset(float sampleRate, int OSamount); 
+    void Reset(float sampleRate, int OSamount, int numChannels); 
     void UpdateParameters(float low, float high, float intensity, float delaytime, int playheadenabled[], int delayenabled, float delayamount, int reverbenabled, float reverbamount, float inputlevel, float wetdry);
-    void ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize, int numChannels);
+    void ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize);
 
 private:
 

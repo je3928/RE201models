@@ -24,13 +24,16 @@ private:
     std::vector<std::unique_ptr<VAToneStack>> VAfilters;
     std::vector<std::unique_ptr<WDFToneStack>> WDFfilters;
 
-    
-
     // False for VA model, true for WDF model. Assigned at reset.
     bool VAorWDF = false;
 
     // Object variables
     int NumChannels = 2;
     float InputLevel = 0.0f;
+    
+    // Linear mapping function
+    float map(float x, float in_min, float in_max, float out_min, float out_max) {
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
 
 };

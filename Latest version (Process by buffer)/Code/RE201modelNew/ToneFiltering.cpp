@@ -3,9 +3,9 @@
 void ToneStackProcessor::Reset(float sampleRate, int numChannels, bool vaorwdf) 
 {
     // Clear previous filters
-    VAfilters.clear();
     WDFfilters.clear();
-
+    VAfilters.clear();
+    
     // Check if we are using VA or WDF tone stack model and initialise correct filters.
     if(!vaorwdf)
     {
@@ -35,6 +35,8 @@ void ToneStackProcessor::UpdateParameters(float Bass, float Treble, float inputl
     // Check whether we are using VA or WDF model and calculate appropriate filters.
     if (!VAorWDF)
     {
+        Bass = map(Bass, 0.f, 1.f, 0.001, 0.999);
+        Treble = map(Treble, 0.f, 1.f, 0.001, 0.999);
         for (int channel = 0; channel < NumChannels; channel++) 
         {
             VAfilters[channel]->updateFilterCoefficients(Bass, Treble);
@@ -42,6 +44,8 @@ void ToneStackProcessor::UpdateParameters(float Bass, float Treble, float inputl
     }
     else if (VAorWDF)
     {
+        Bass = map(Bass, 0.f, 1.f, 0.025, 2.f);
+        Treble = map(Treble, 0.f, 1.f, 0.025, 2.f);
         for (int channel = 0; channel < NumChannels; channel++) 
         {
             WDFfilters[channel]->updateParams(Bass, Treble);
@@ -57,6 +61,11 @@ void ToneStackProcessor::UpdateParameters(float Bass, float Treble, float inputl
 void ToneStackProcessor::ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize)
 {
     
+    // Set channels to buffer size if inconsistent,
+    // avoids segmentation errors when mono only.
+    if (buffer.size() != NumChannels)
+        NumChannels = buffer.size();
+    
     // Check if we are using VA or WDF tone stack model and apply correct DSP
    if (!VAorWDF)
     {
@@ -64,6 +73,7 @@ void ToneStackProcessor::ProcessBuffer(std::vector<std::vector<float>>& buffer, 
         {
             for (int sample = 0; sample < blockSize; sample++)
             {
+                
                 buffer[channel][sample] = VAfilters[channel]->processSample((buffer[channel][sample]) * InputLevel);
             }
         }
@@ -78,7 +88,6 @@ void ToneStackProcessor::ProcessBuffer(std::vector<std::vector<float>>& buffer, 
             }
         }
     }
-
 
 }
 

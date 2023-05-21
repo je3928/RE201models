@@ -103,8 +103,10 @@ private:
 		// fNoise is 0 -> ARC4RANDOMMAX
 		noise = (float)arc4random();
 
+        double arc4random_max = 4294967295.0;
+        
 		// normalize and make bipolar
-		noise = 2.0 * (noise / ARC4RANDOMMAX) - 1.0;
+		noise = 2.0 * (noise / arc4random_max) - 1.0;
 #endif
 
 		return noise;

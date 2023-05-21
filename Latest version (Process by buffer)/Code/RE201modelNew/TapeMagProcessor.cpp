@@ -13,6 +13,10 @@ TapeMagProcessor::~TapeMagProcessor()
 // Currently only setup for OS amount of 2x, do not use for amounts higher than this yet...
 void TapeMagProcessor::Reset(float sampleRate, int numChannels, int osamount)
 {
+    
+    // Save OS amount to object for DSP processing
+    OSamount = osamount;
+    
     // Clear previous DSP objects
     TapeODESolvers.clear();
     InterpolationFilters.clear();
@@ -51,13 +55,17 @@ void TapeMagProcessor::Reset(float sampleRate, int numChannels, int osamount)
 
     }
 
-    // Save OS amount to object for DSP processing
-    OSamount = osamount;
+    
 
 }
 
 void TapeMagProcessor::ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize)
 {
+    // Set channels to buffer size if inconsistent,
+    // avoids segmentation errors when mono only.
+    if (buffer.size() != NumChannels)
+        NumChannels = buffer.size();
+    
     // If oversampling enabled apply oversampling
     if (OSamount > 1)
     {

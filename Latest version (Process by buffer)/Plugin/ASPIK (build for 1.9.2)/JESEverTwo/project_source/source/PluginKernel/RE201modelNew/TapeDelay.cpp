@@ -61,9 +61,6 @@ void TapeDelayProcessor::Reset(float sampleRate, int numChannels)
 
     }
     
-
-   
-
 }
 
 void TapeDelayProcessor::UpdateParameters(float intensity, float delaytime, int playheadEnabled[], int delayEnabled, float delayAmount)
@@ -71,7 +68,7 @@ void TapeDelayProcessor::UpdateParameters(float intensity, float delaytime, int 
 
     // Save plugin parameters to object
     Intensity = intensity;
-    DelayTime = delaytime;
+    DelayTime = map(delaytime, 0.f, 100.f, 200.f, 50.f);
     DelayEnabled = delayEnabled;
     DelayAmount = delayAmount;
 
@@ -81,7 +78,7 @@ void TapeDelayProcessor::UpdateParameters(float intensity, float delaytime, int 
     PH3enabled = playheadEnabled[2];
 
     // Calculate cutoff for low pass biquad based on delay time (tape speed)
-    float cutoff = map(delaytime, 200.f, 50.f, 5000.f, 15000.f);
+    float cutoff = map(DelayTime, 200.f, 50.f, 5000.f, 15000.f);
 
     // Calculate normalized cutoff
     float normalized_cutoff = cutoff / SampleRate;
@@ -96,6 +93,8 @@ void TapeDelayProcessor::UpdateParameters(float intensity, float delaytime, int 
 
 void TapeDelayProcessor::ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize)
 {
+    if (buffer.size() != NumChannels)
+        NumChannels = buffer.size();
 
     for (int channel = 0; channel < NumChannels; channel++)
     {

@@ -1,7 +1,5 @@
 #pragma once
-#include "hiir/Upsampler2x4Sse.h"
-#include "hiir/Downsampler2x4Sse.h"
-#include <cmath >
+#include <cmath>
 
 class rk4thOrderODETapeMag
 {
@@ -67,7 +65,8 @@ public:
 	}
 
 	// Process sample with 2nd order Runge Kutta solver
-	float process2nd(float xn, float saturation, float drive) {
+	float process2nd(float xn, float saturation, float drive)
+    {
 	
 		M_s = 0.5 + 1.5 * (1.0 - saturation);
 		a = M_s / (0.01 + 6.0 * drive);
@@ -87,13 +86,13 @@ public:
 		Hn1 = Hn;
 		Hdn1 = Hd;
 
-		bool illCondition = std::isnan(Mn) || Mn > upperLim;
-		Mn = illCondition ? 0.0 : Mn;
-		Hd = illCondition ? 0.0 : Hd;
+        bool illCondition = std::isnan(Mn) || Mn > upperLim;
 
-		float output = (wireN * W * E * tapespeed * u0 * g * Mn) * 150;
+        if (illCondition)
+            Mn = Hd = 0.0f;
 
-		return output;
+
+        return (wireN * W * E * tapespeed * u0 * g * Mn) * 150;
 	
 	}
 
@@ -101,7 +100,8 @@ public:
 private:
 
 	// Langevin function
-	float L(float x) {
+	float L(float x)
+    {
 
 		float coth = 1 / std::tanh(x);
 
@@ -114,7 +114,8 @@ private:
 	}
 
 	// Langevin derivative
-	float L_d(float x) {
+	float L_d(float x)
+    {
 
 		float xsquared = x * x;
 
@@ -131,7 +132,8 @@ private:
 
 
 	// Alpha transform derivative approximation
-	float deriv(float x_n, float x_n1, float xDeriv_n1) {
+	float deriv(float x_n, float x_n1, float xDeriv_n1)
+    {
 
 
 		const float dAlpha = 0.75;
@@ -139,7 +141,8 @@ private:
 	}
 
 	// ODE for calculating current magnetisation based on playhead position derivative
-	float f(float M, float H, float H_d) {
+	float f(float M, float H, float H_d)
+    {
 	
 		float Q = (H + alpha * M) / a;
 		float M_diff = M_s * L(Q) - M;
@@ -160,7 +163,8 @@ private:
 	}
 
 	// Returns the sign of a number
-	int sign(int x) {
+	int sign(int x)
+    {
 
 		if (x < 0)
 			return -1;

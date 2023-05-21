@@ -70,10 +70,16 @@ bool PluginCore::reset(ResetInfo& resetInfo)
     audioProcDescriptor.sampleRate = resetInfo.sampleRate;
     audioProcDescriptor.bitDepth = resetInfo.bitDepth;
 
-
-	tapemodel->Reset(resetInfo.sampleRate, OSamount[os_amount]);
-
+    
 	SampleRate = resetInfo.sampleRate;
+    
+    // Max number of channels processed by plugin,
+    // temporary fix to pass AU validation....
+    // This means that objects are dynamically allocated
+    // to the heap but currently the amount of objects is static
+    int MaxNumChannels = 2;
+    
+    tapemodel->Reset(SampleRate, OSamount[os_amount], MaxNumChannels);
 
     // --- other reset inits
     return PluginBase::reset(resetInfo);
@@ -88,6 +94,7 @@ Operation:
 bool PluginCore::initialize(PluginInfo& pluginInfo)
 {
 	// --- add one-time init stuff here
+
 
 	return true;
 }
@@ -111,6 +118,8 @@ bool PluginCore::preProcessAudioBuffers(ProcessBufferInfo& processInfo)
     // --- sync internal variables to GUI parameters; you can also do this manually if you don't
     //     want to use the auto-variable-binding
     syncInBoundVariables();
+    
+
 
     return true;
 }
@@ -392,24 +401,25 @@ bool PluginCore::renderFXPassThrough(ProcessBlockInfo& blockInfo)
 	// Update the channel count
 	NumChannels = blockInfo.numAudioOutChannels;
 
-			// Get audio buffer
-			//float ** buffer = blockInfo.inputs;
-
+            // Initialise DSP buffer
 			std::vector<std::vector<float>> buffer;
 
+                // Resize to channel count
 				buffer.resize(blockInfo.numAudioOutChannels);
 	
+                // Resize internal vectors to block size
 				for (int i = 0; i < NumChannels; ++i)
 				{
 					buffer[i].resize(blockInfo.blockSize);
 	
 				}
 
+            // Apply input buffer to DSP buffer
 			for (int channel = 0; channel < blockInfo.numAudioOutChannels; channel++)
 			{
 				for (int sample = 0; sample < blockInfo.blockSize; sample++)
 				{
-					
+                    // If mono input, duplicate only input channel to all output channels
 					if (blockInfo.numAudioInChannels == 1)
 						buffer[channel][sample] = blockInfo.inputs[0][sample];
 					else 
@@ -424,7 +434,7 @@ bool PluginCore::renderFXPassThrough(ProcessBlockInfo& blockInfo)
 			tapemodel->UpdateParameters(bass, treble, intensity, repeatRate, playheadstates, delayEnabled[delaySetting], echovolume, reverbEnabled[delaySetting], reverbvolume, inputLevel, WetDry);
 
 			// Process buffer
-			tapemodel->ProcessBuffer(buffer, blockInfo.blockSize, blockInfo.numAudioOutChannels);
+			tapemodel->ProcessBuffer(buffer, blockInfo.blockSize);
 		
 					// Assign buffer outputs
 					for (int channel = 0; channel < blockInfo.numAudioOutChannels; channel++)
@@ -437,7 +447,7 @@ bool PluginCore::renderFXPassThrough(ProcessBlockInfo& blockInfo)
 							// assign current sample to output buffer
 							blockInfo.outputs[channel][sample] = currentsample;
 
-							// calculate moving average for meter.
+							// get current sample abs for VU meter
 							m_fMeterValue = std::abs(currentsample);
 						}
 					}
@@ -701,21 +711,21 @@ bool PluginCore::initPluginParameters()
 	PluginParameter* piParam = nullptr;
 
 	// --- continuous control: Bass
-	piParam = new PluginParameter(controlID::bass, "Bass", "", controlVariableType::kFloat, 0.250000, 2.000000, 1.000000, taper::kLinearTaper);
+	piParam = new PluginParameter(controlID::bass, "Bass", "", controlVariableType::kFloat, 0.000000, 1.000000, 0.500000, taper::kLinearTaper);
 	piParam->setParameterSmoothing(false);
 	piParam->setSmoothingTimeMsec(20.00);
 	piParam->setBoundVariable(&bass, boundVariableType::kFloat);
 	addPluginParameter(piParam);
 
 	// --- continuous control: Treble
-	piParam = new PluginParameter(controlID::treble, "Treble", "", controlVariableType::kFloat, 0.250000, 2.000000, 1.000000, taper::kLinearTaper);
+	piParam = new PluginParameter(controlID::treble, "Treble", "", controlVariableType::kFloat, 0.000000, 1.000000, 0.500000, taper::kLinearTaper);
 	piParam->setParameterSmoothing(false);
 	piParam->setSmoothingTimeMsec(20.00);
 	piParam->setBoundVariable(&treble, boundVariableType::kFloat);
 	addPluginParameter(piParam);
 
 	// --- continuous control: Repeat Rate
-	piParam = new PluginParameter(controlID::repeatRate, "Repeat Rate", "ms", controlVariableType::kFloat, 200.000000, 50.000000, 50.000000, taper::kLinearTaper);
+	piParam = new PluginParameter(controlID::repeatRate, "Repeat Rate", "%", controlVariableType::kFloat, 0.000000, 100.000000, 50.000000, taper::kLinearTaper);
 	piParam->setParameterSmoothing(false);
 	piParam->setSmoothingTimeMsec(20.00);
 	piParam->setBoundVariable(&repeatRate, boundVariableType::kFloat);
@@ -754,14 +764,14 @@ bool PluginCore::initPluginParameters()
 	addPluginParameter(piParam);
 
 	// --- continuous control: Input Level
-	piParam = new PluginParameter(controlID::inputLevel, "Input Level", "Units", controlVariableType::kFloat, 0.000000, 1.000000, 0.500000, taper::kLinearTaper);
+	piParam = new PluginParameter(controlID::inputLevel, "Input Level", "", controlVariableType::kFloat, 0.000000, 1.000000, 0.500000, taper::kLinearTaper);
 	piParam->setParameterSmoothing(false);
 	piParam->setSmoothingTimeMsec(100.00);
 	piParam->setBoundVariable(&inputLevel, boundVariableType::kFloat);
 	addPluginParameter(piParam);
 
 	// --- continuous control: Wet/Dry
-	piParam = new PluginParameter(controlID::WetDry, "Wet/Dry", "Units", controlVariableType::kFloat, 0.000000, 1.000000, 0.500000, taper::kLinearTaper);
+	piParam = new PluginParameter(controlID::WetDry, "Wet/Dry", "", controlVariableType::kFloat, 0.000000, 1.000000, 0.500000, taper::kLinearTaper);
 	piParam->setParameterSmoothing(false);
 	piParam->setSmoothingTimeMsec(100.00);
 	piParam->setBoundVariable(&WetDry, boundVariableType::kFloat);

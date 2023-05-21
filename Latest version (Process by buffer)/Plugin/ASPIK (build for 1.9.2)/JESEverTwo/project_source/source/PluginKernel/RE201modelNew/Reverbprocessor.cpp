@@ -30,6 +30,10 @@ void ReverbProcessor::UpdateParameters(int reverbEnabled, float reverbAmount)
 
 void ReverbProcessor::ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize)
 {
+    // Set channels to buffer size if inconsistent,
+    // avoids segmentation errors when mono only.
+    if (buffer.size() != NumChannels)
+        NumChannels = buffer.size();
    
     for (int channel = 0; channel < NumChannels; channel++)
     {
