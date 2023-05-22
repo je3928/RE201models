@@ -39,6 +39,8 @@ private:
     int NumChannels = 2;
     int BlockSize = 512;
 
+    bool ReverbEnabled = false;
+
     // Wet dry param for blending tsbuffer
     float wetDry = 0.0f;
 
