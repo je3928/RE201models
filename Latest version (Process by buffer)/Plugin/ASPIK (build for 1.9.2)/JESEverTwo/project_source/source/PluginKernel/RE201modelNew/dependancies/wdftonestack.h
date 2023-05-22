@@ -33,7 +33,9 @@ public:
 
     }
 
-    void updateParams(double cutoff, double g) {
+    void updateParams(double Cutoff, double g) {
+
+        cutoff = Cutoff;
 
         G = g;
         C = 1 / (2 * M_PI * cutoff * R);
@@ -68,7 +70,7 @@ public:
 
 private:
 
-    float cutoff = 900.f;
+    float cutoff = 3000.f;
     const float R = 100000;
     float C = 1 / (2 * M_PI * cutoff * R);
 
@@ -120,7 +122,9 @@ public:
 
     }
 
-    void updateParams(double cutoff, double g) {
+    void updateParams(double Cutoff, double g) {
+
+        cutoff = Cutoff;
 
         G = g;
 
@@ -155,7 +159,7 @@ public:
 
 private:
 
-    float cutoff = 500.f;
+    float cutoff = 200.f;
     const float R = 100000;
     float C = 1 / (2 * M_PI * cutoff * R);
 
@@ -207,8 +211,8 @@ public:
     void updateParams(double low, double high) {
 
 
-        ls.updateParams(300.f, low);
-        hs.updateParams(1500.f, high);
+        ls.updateParams(200.f, low);
+        hs.updateParams(3000.f, high);
 
 
 
