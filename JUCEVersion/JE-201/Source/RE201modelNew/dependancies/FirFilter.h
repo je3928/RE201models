@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <vector>
+#define M_PI 3.1415926535897932384626433
 
 
 class FirFilter {

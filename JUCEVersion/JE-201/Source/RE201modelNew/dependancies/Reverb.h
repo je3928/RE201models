@@ -24,8 +24,6 @@ public:
 	// Process sample
 	float processSample(float xn)
 	{
-	
-		xn = xn * 0.5f;
 
 		float* xnptr = &xn;
 

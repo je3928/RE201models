@@ -177,7 +177,7 @@
     </XCODE_MAC>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
