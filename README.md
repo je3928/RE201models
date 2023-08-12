@@ -37,8 +37,14 @@ https://ccrma.stanford.edu/~dtyeh/papers/yeh06_dafx.pdf
 HI-FI LO-FI - All models implemented FFT convolution of the reverb only setting of a Boss RE-2. The real time convolution was implemented using HI-FI LO-FIs TwoStageFFTconvolver.
 https://github.com/HiFi-LoFi/FFTConvolver
 
-Will Pirkle - Plugins were prototyped using RackAFX and final plugins were generated using ASPIK.
+Will Pirkle - Plugins were prototyped using RackAFX and original plugins were generated using ASPIK.
 https://github.com/willpirkleaudio/ASPiK
 
 EarLevel Engineering - This biquad was used in tape speed dependant equalisation modelling, modified to be direct form 2 transposed.
 https://www.earlevel.com/main/2012/11/26/biquad-c-source-code/
+
+Foleys GUI Magic - GUI for JUCE versions of the plugin was created using foleys GUI magic.
+https://github.com/ffAudio/foleys_gui_magic
+
+
+
