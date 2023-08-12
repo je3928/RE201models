@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<magic>
+  <Styles>
+    <Style name="default">
+      <Nodes/>
+      <Classes>
+        <plot-view border="2" background-color="black" border-color="silver" display="contents"/>
+        <nomargin margin="0" padding="0" border="0"/>
+        <group margin="5" padding="5" border="2" flex-direction="column"/>
+        <transparent background-color="transparentblack"/>
+      </Classes>
+      <Types>
+        <Slider border="0" slider-textbox="textbox-below"/>
+        <ToggleButton border="0" max-height="50" caption-size="0" text="Active"/>
+        <TextButton border="0" max-height="50" caption-size="0"/>
+        <ComboBox border="0" max-height="50" caption-size="0"/>
+        <Plot border="0" margin="0" padding="0" background-color="00000000"
+              radius="0"/>
+        <XYDragComponent border="0" margin="0" padding="0" background-color="00000000"
+                         radius="0"/>
+      </Types>
+      <Palettes>
+        <default/>
+      </Palettes>
+    </Style>
+  </Styles>
+  <View id="root" resizable="1" resize-corner="1" width="1000" height="500">
+    <View class="parameters nomargin" width="800" height="480" background-color="FF10932E">
+      <View caption="DELAY" class="group" border-color="FF000000">
+        <Slider caption="Delay Setting" parameter="DelaySetting"/>
+        <View>
+          <Slider caption="Intensity" parameter="Intensity"/>
+          <Slider caption="Repeat Rate" parameter="RepeatRate"/>
+        </View>
+      </View>
+      <View caption="MASTER" class="group" background-color="FF040202">
+        <View>
+          <Label text="JE-201" font-size="100" lookAndFeel="FoleysFinest" label-editing-text=""/>
+        </View>
+        <View>
+          <Slider caption="Echo Volume" parameter="EchoVolume"/>
+          <Slider caption="Reverb Volume" parameter="ReverbVolume"/>
+        </View>
+      </View>
+      <View caption="INPUT" class="group" background-color="FF070505">
+        <View>
+          <Slider caption="Wet / Dry" parameter="WetDry"/>
+          <Slider caption="Input Level" parameter="InputLevel"/>
+        </View>
+        <View>
+          <Slider caption="Treble" parameter="Treble"/>
+          <Slider caption="Bass" parameter="Bass"/>
+        </View>
+      </View>
+    </View>
+  </View>
+</magic>

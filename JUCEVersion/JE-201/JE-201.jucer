@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="EbgKYR" name="JE-201" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginManufacturer="JEPlugins" bundleIdentifier="com.JEPlugins.JE201"
+              aaxIdentifier="com.JEPlugins.JE201">
+  <MAINGROUP id="WaulMX" name="JE-201">
+    <GROUP id="{ED5759A3-DAB0-C508-A836-0266D1850FA6}" name="Source">
+      <FILE id="zBtfYI" name="JE201Gui.xml" compile="0" resource="1" file="Source/JE201Gui.xml"/>
+      <GROUP id="{AC407C1B-A855-7903-09E5-887A048F7D4B}" name="RE201modelNew">
+        <GROUP id="{F4BEA029-B30B-5E6F-572D-1D2BB23D3C36}" name="dependancies">
+          <GROUP id="{33CDC2BF-7379-B127-E3BF-6551C1D7E59A}" name="chowdsp_wdf">
+            <GROUP id="{FAB3E2FE-5C69-0819-E2E5-50C5DF4FB9FB}" name="math">
+              <FILE id="dKuIyq" name="omega.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/math/omega.h"/>
+              <FILE id="ZBP2UB" name="sample_type.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/math/sample_type.h"/>
+              <FILE id="aVzjIz" name="signum.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/math/signum.h"/>
+            </GROUP>
+            <GROUP id="{404D90BE-9387-8AEC-E5C0-DBD0CAAA3FCA}" name="rtype">
+              <FILE id="OInzgg" name="root_rtype_adaptor.h" compile="0" resource="0"
+                    file="Source/RE201modelNew/dependancies/chowdsp_wdf/rtype/root_rtype_adaptor.h"/>
+              <FILE id="Djr4lA" name="rtype.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/rtype/rtype.h"/>
+              <FILE id="VftTLX" name="rtype_adaptor.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/rtype/rtype_adaptor.h"/>
+              <FILE id="XXWVzR" name="rtype_detail.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/rtype/rtype_detail.h"/>
+              <FILE id="lHkj6X" name="wdf_rtype.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/rtype/wdf_rtype.h"/>
+            </GROUP>
+            <GROUP id="{624DE67F-4207-47E5-E886-1F31789A7B41}" name="util">
+              <FILE id="Ymnuv0" name="defer_impedance.h" compile="0" resource="0"
+                    file="Source/RE201modelNew/dependancies/chowdsp_wdf/util/defer_impedance.h"/>
+            </GROUP>
+            <GROUP id="{46F604D2-C1EC-D485-4C8F-9799381C0C62}" name="wdf">
+              <FILE id="WlWVea" name="wdf.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdf/wdf.h"/>
+              <FILE id="l22CWT" name="wdf_adaptors.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdf/wdf_adaptors.h"/>
+              <FILE id="MGKyvf" name="wdf_base.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdf/wdf_base.h"/>
+              <FILE id="xmcqLX" name="wdf_nonlinearities.h" compile="0" resource="0"
+                    file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdf/wdf_nonlinearities.h"/>
+              <FILE id="s6125s" name="wdf_one_ports.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdf/wdf_one_ports.h"/>
+              <FILE id="D05vS4" name="wdf_sources.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdf/wdf_sources.h"/>
+            </GROUP>
+            <GROUP id="{19B469BF-B2F8-6626-BC47-D61C71421920}" name="wdft">
+              <FILE id="Acx7gp" name="wdft.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdft/wdft.h"/>
+              <FILE id="R6XWcK" name="wdft_adaptors.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdft/wdft_adaptors.h"/>
+              <FILE id="P7qVBS" name="wdft_base.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdft/wdft_base.h"/>
+              <FILE id="NlMtga" name="wdft_nonlinearities.h" compile="0" resource="0"
+                    file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdft/wdft_nonlinearities.h"/>
+              <FILE id="UNedQF" name="wdft_one_ports.h" compile="0" resource="0"
+                    file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdft/wdft_one_ports.h"/>
+              <FILE id="MDYXGG" name="wdft_sources.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/wdft/wdft_sources.h"/>
+            </GROUP>
+            <FILE id="u0AR8u" name="chowdsp_wdf.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/chowdsp_wdf/chowdsp_wdf.h"/>
+          </GROUP>
+          <GROUP id="{1245E55E-E1E4-B0EB-CBFE-24E91A8A290E}" name="FFTConvolver">
+            <FILE id="BpQf7L" name="AudioFFT.cpp" compile="1" resource="0" file="Source/RE201modelNew/dependancies/FFTConvolver/AudioFFT.cpp"/>
+            <FILE id="CLvO9Y" name="AudioFFT.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/FFTConvolver/AudioFFT.h"/>
+            <FILE id="l4Xtx7" name="FFTConvolver.cpp" compile="1" resource="0"
+                  file="Source/RE201modelNew/dependancies/FFTConvolver/FFTConvolver.cpp"/>
+            <FILE id="CW3OWM" name="FFTConvolver.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/FFTConvolver/FFTConvolver.h"/>
+            <FILE id="Kx5hvO" name="TwoStageFFTConvolver.cpp" compile="1" resource="0"
+                  file="Source/RE201modelNew/dependancies/FFTConvolver/TwoStageFFTConvolver.cpp"/>
+            <FILE id="XXYLc7" name="TwoStageFFTConvolver.h" compile="0" resource="0"
+                  file="Source/RE201modelNew/dependancies/FFTConvolver/TwoStageFFTConvolver.h"/>
+            <FILE id="ulQa2T" name="Utilities.cpp" compile="1" resource="0" file="Source/RE201modelNew/dependancies/FFTConvolver/Utilities.cpp"/>
+            <FILE id="qEwnYv" name="Utilities.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/FFTConvolver/Utilities.h"/>
+          </GROUP>
+          <FILE id="G8Qmrd" name="Biquad.cpp" compile="1" resource="0" file="Source/RE201modelNew/dependancies/Biquad.cpp"/>
+          <FILE id="Ln4YvF" name="Biquad.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/Biquad.h"/>
+          <FILE id="turkzD" name="BiquadCascade.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/BiquadCascade.h"/>
+          <FILE id="pu30W8" name="CircularBuffer.cpp" compile="1" resource="0"
+                file="Source/RE201modelNew/dependancies/CircularBuffer.cpp"/>
+          <FILE id="SEYXhx" name="CircularBuffer.h" compile="0" resource="0"
+                file="Source/RE201modelNew/dependancies/CircularBuffer.h"/>
+          <FILE id="FBjeci" name="OnePole.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/OnePole.h"/>
+          <FILE id="sJoQWc" name="re2ir.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/re2ir.h"/>
+          <FILE id="dAKRt8" name="Reverb.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/Reverb.h"/>
+          <FILE id="dm9v42" name="tapemag.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/tapemag.h"/>
+          <FILE id="NSsFMm" name="vatonestack.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/vatonestack.h"/>
+          <FILE id="KWo202" name="wdftonestack.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/wdftonestack.h"/>
+          <FILE id="HuYjLc" name="wowflutter.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/wowflutter.h"/>
+        </GROUP>
+        <FILE id="BtuJZr" name="RE201model.cpp" compile="1" resource="0" file="Source/RE201modelNew/RE201model.cpp"/>
+        <FILE id="D5YJ8s" name="RE201model.h" compile="0" resource="0" file="Source/RE201modelNew/RE201model.h"/>
+        <FILE id="kNXHL1" name="Reverbprocessor.cpp" compile="1" resource="0"
+              file="Source/RE201modelNew/Reverbprocessor.cpp"/>
+        <FILE id="bprVOa" name="Reverbprocessor.h" compile="0" resource="0"
+              file="Source/RE201modelNew/Reverbprocessor.h"/>
+        <FILE id="aMa6dh" name="TapeDelay.cpp" compile="1" resource="0" file="Source/RE201modelNew/TapeDelay.cpp"/>
+        <FILE id="K9QTCI" name="TapeDelay.h" compile="0" resource="0" file="Source/RE201modelNew/TapeDelay.h"/>
+        <FILE id="W1vnDr" name="TapeMagProcessor.cpp" compile="1" resource="0"
+              file="Source/RE201modelNew/TapeMagProcessor.cpp"/>
+        <FILE id="ieB7QZ" name="TapeMagProcessor.h" compile="0" resource="0"
+              file="Source/RE201modelNew/TapeMagProcessor.h"/>
+        <FILE id="c186dm" name="ToneFiltering.cpp" compile="1" resource="0"
+              file="Source/RE201modelNew/ToneFiltering.cpp"/>
+        <FILE id="TSILIi" name="ToneFiltering.h" compile="0" resource="0" file="Source/RE201modelNew/ToneFiltering.h"/>
+        <FILE id="CzGwve" name="WetDryProcessor.h" compile="0" resource="0"
+              file="Source/RE201modelNew/WetDryProcessor.h"/>
+      </GROUP>
+      <FILE id="wohr0U" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="Uh9VWL" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="NIjIvs" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="G7ZohU" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"
+               FOLEYS_SHOW_GUI_EDITOR_PALLETTE="0" FOLEYS_ENABLE_BINARY_DATA="0"/>
+  <EXPORTFORMATS>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="JE-201"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="JE-201"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="../../../../juce_modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2019>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="JE-201"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="JE-201"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="../../../../juce_modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="JE-201"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="JE-201"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="../../../../juce_modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>

@@ -3,8 +3,6 @@
 #include <cmath>
 #include <vector>
 
-#define M_PI 3.1415926535897932384626433
-
 
 class FirFilter {
 public:
@@ -16,13 +14,12 @@ public:
 	void setCutoffFrequency(float cutoffFreq, float sampleRate) {
 		float omega = 2.0 * M_PI * cutoffFreq / sampleRate;
 		for (int i = 0; i < m_numTaps; i++) {
-			float n = i - m_numTaps / 2.f;
-			float hamming = 0.54 - 0.46 * cos((2.0 * M_PI * i) / (m_numTaps - 1));
 			if (i == m_numTaps / 2) {
-				m_coeffs[i] = (omega / M_PI) * hamming;
+				m_coeffs[i] = omega / M_PI;
 			}
 			else {
-				m_coeffs[i] = (sin(omega * n) / (M_PI * n)) * hamming;
+				float n = i - m_numTaps / 2.f;
+				m_coeffs[i] = sin(omega * n) / (M_PI * n);
 			}
 		}
 	}
