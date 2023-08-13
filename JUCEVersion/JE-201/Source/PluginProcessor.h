@@ -61,24 +61,32 @@ public:
     
     
 private:
-    // ------
+    // ------ Parameter storage variabels
     
     std::atomic<float> *InputLevel = nullptr, *WetDry = nullptr, *Bass = nullptr, *Treble = nullptr, *RepeatRate = nullptr, *Intensity = nullptr, *ReverbVolume = nullptr, *EchoVolume = nullptr;
     
-    AudioParameterChoice *DelaySetting = nullptr; //, *OSAmount = nullptr;
+    AudioParameterChoice *DelaySetting = nullptr;
     
-    // ------
+    //Keep for when fixed
+    //, *OSAmount = nullptr;
     
+    
+    // ------ Plugin Objects
+    
+    // Space echo model
     RE201model echomodel;
     
+    // Valuetree objects and functions
     AudioProcessorValueTreeState treestate;
     AudioProcessorValueTreeState::ParameterLayout params(); 
     
     // -------
     
+    // Functions for getting params from treestate and applying to DSP objects
     void populateParameters();
     void updateParameters();
 
+    // Parameter thread safety flag
     std::atomic_flag changesApplied;
     
     // Current multi tap playhead state
@@ -88,53 +96,17 @@ private:
     int reverbEnabled[12] = { 0, 0 ,0 ,0 , 1, 1, 1, 1, 1, 1, 1, 1 };
     int delayEnabled[12] = { 1, 1 ,1 ,1, 1, 1, 1, 1, 1, 1, 1, 0 };
     
-    // OS amounts
+    // OS amounts, Reintegrate in future updates
     //int OSamount[5] = { 2, 4, 6, 8, 16};
     //int previousOSamount = 0;
-    //float SampleRate = 44100;
-    //int BlockSize = 128;
 
 
     // Function to apply playhead states based on mode selection
-    void applyDelaySettings() {
+    void applyDelaySettings()
+    {
 
-        if (*DelaySetting == 0) {
-
-            playheadstates[0] = 1;
-            playheadstates[1] = 0;
-            playheadstates[2] = 0;
-
-
-        }
-
-        if (*DelaySetting == 1) {
-
-            playheadstates[0] = 0;
-            playheadstates[1] = 1;
-            playheadstates[2] = 0;
-
-
-        }
-
-        if (*DelaySetting == 2) {
-
-            playheadstates[0] = 0;
-            playheadstates[1] = 0;
-            playheadstates[2] = 1;
-
-
-        }
-
-        if (*DelaySetting == 3) {
-
-            playheadstates[0] = 0;
-            playheadstates[1] = 1;
-            playheadstates[2] = 1;
-
-
-        }
-
-        if (*DelaySetting == 4) {
+        if (*DelaySetting == 0)
+        {
 
             playheadstates[0] = 1;
             playheadstates[1] = 0;
@@ -143,7 +115,8 @@ private:
 
         }
 
-        if (*DelaySetting == 5) {
+        if (*DelaySetting == 1)
+        {
 
             playheadstates[0] = 0;
             playheadstates[1] = 1;
@@ -152,7 +125,8 @@ private:
 
         }
 
-        if (*DelaySetting == 6) {
+        if (*DelaySetting == 2)
+        {
 
             playheadstates[0] = 0;
             playheadstates[1] = 0;
@@ -161,7 +135,48 @@ private:
 
         }
 
-        if (*DelaySetting == 7) {
+        if (*DelaySetting == 3)
+        {
+
+            playheadstates[0] = 0;
+            playheadstates[1] = 1;
+            playheadstates[2] = 1;
+
+
+        }
+
+        if (*DelaySetting == 4)
+        {
+
+            playheadstates[0] = 1;
+            playheadstates[1] = 0;
+            playheadstates[2] = 0;
+
+
+        }
+
+        if (*DelaySetting == 5)
+        {
+
+            playheadstates[0] = 0;
+            playheadstates[1] = 1;
+            playheadstates[2] = 0;
+
+
+        }
+
+        if (*DelaySetting == 6)
+        {
+
+            playheadstates[0] = 0;
+            playheadstates[1] = 0;
+            playheadstates[2] = 1;
+
+
+        }
+
+        if (*DelaySetting == 7)
+        {
 
             playheadstates[0] = 1;
             playheadstates[1] = 1;
@@ -170,7 +185,8 @@ private:
 
         }
 
-        if (*DelaySetting == 8) {
+        if (*DelaySetting == 8)
+        {
 
             playheadstates[0] = 0;
             playheadstates[1] = 1;
@@ -179,7 +195,8 @@ private:
 
         }
 
-        if (*DelaySetting == 9) {
+        if (*DelaySetting == 9)
+        {
 
             playheadstates[0] = 1;
             playheadstates[1] = 0;
@@ -188,7 +205,8 @@ private:
 
         }
 
-        if (*DelaySetting == 10) {
+        if (*DelaySetting == 10)
+        {
 
             playheadstates[0] = 1;
             playheadstates[1] = 1;

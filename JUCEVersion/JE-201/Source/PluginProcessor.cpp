@@ -112,11 +112,8 @@ void JE201AudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     // Clear atomic flag so that parameters are saved to internal variables
     changesApplied.clear();
     
+    // Reset tape model object, Set OS Amount to 1 (disabled for now, fix in future updates), set max channel count to 2.
     echomodel.Reset(sampleRate, 1, 2);
-    
-    //SampleRate = sampleRate;
-   //BlockSize = samplesPerBlock;
-
     
 }
 
@@ -198,6 +195,7 @@ void JE201AudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
         }
     }
 
+    // Apply signal processing
     echomodel.ProcessBuffer(processingbuffer, buffer.getNumSamples());
     
     // Apply processed audio to buffer write pointer
