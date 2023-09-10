@@ -28,7 +28,7 @@ float WaveguideUnit::ProcessSample(float xn)
 
 }
 
-void WaveguideUnit::Reset(float sampleRate)
+void WaveguideUnit::Reset(float sampleRate, float HPF_FC, float LPF_FC)
 {
 	delayBuffer.Init(sampleRate, 500.f);
 	dispertion1.Init(sampleRate);
@@ -36,8 +36,8 @@ void WaveguideUnit::Reset(float sampleRate)
 	dispertion3.Init(sampleRate);
 	dispertion4.Init(sampleRate);
 	dispertion5.Init(sampleRate);
-	OutputFilter1.Init(LPF, 2000.f, sampleRate, 0.707, 0.f);
-	OutputFilter2.Init(HPF, 300.f, sampleRate, 0.707, 0.f);
+	OutputFilter1.Init(LPF, LPF_FC, sampleRate, 0.707, 0.f);
+	OutputFilter2.Init(HPF, HPF_FC, sampleRate, 0.707, 0.f);
 
 
 }

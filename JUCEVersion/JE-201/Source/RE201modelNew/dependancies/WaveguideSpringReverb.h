@@ -3,6 +3,7 @@
 #include "CircularBuffer.h"
 #include "AllPassFilter.h"
 #include "Biquad.h"
+#include <random>
 
 
 class WaveguideUnit 
@@ -13,7 +14,7 @@ public:
     ~WaveguideUnit();
 
     float ProcessSample(float xn);
-    void Reset(float sampleRate);
+    void Reset(float sampleRate, float HPF_FC, float LPF_FC);
     void SetParameters(float RT60, float delayTimeSeconds);
 
 
@@ -23,7 +24,7 @@ private:
     float sampleRate = 0.0f;
     float rt60 = 0.0f;
     float delayTimeSeconds = 0.0f;
-    float attenuation = 0.99f;
+    float attenuation = 0.98f;
 
     CircularBuffer delayBuffer;
     AllPassFilter dispertion1, dispertion2, dispertion3, dispertion4, dispertion5;
@@ -61,19 +62,29 @@ public:
     
     };
 
-    void Reset(float sampleRate) 
+    void Reset(float sampleRate, float minDelaySeconds, float maxDelaySeconds, float HPF_FC, float LPF_FC)
     {
-        WaveguideLeft1.Reset(sampleRate);
-        WaveguideRight1.Reset(sampleRate);
-        WaveguideLeft2.Reset(sampleRate);
-        WaveguideRight2.Reset(sampleRate);
+        WaveguideLeft1.Reset(sampleRate, HPF_FC, LPF_FC);
+        WaveguideRight1.Reset(sampleRate, HPF_FC, LPF_FC);
+        WaveguideLeft2.Reset(sampleRate, HPF_FC, LPF_FC);
+        WaveguideRight2.Reset(sampleRate, HPF_FC, LPF_FC);
 
         yn = 0.0f;
 
-        WaveguideLeft1.SetParameters(1.0, 0.02);
-        WaveguideRight1.SetParameters(1.0, 0.08);
-        WaveguideLeft2.SetParameters(1.0, 0.06);
-        WaveguideRight2.SetParameters(1.0, 0.03);
+        // Seed the random number generator with the current time
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+ 
+
+        // Create a uniform_real_distribution
+        std::uniform_real_distribution<double> distribution(minDelaySeconds, maxDelaySeconds);
+ 
+
+        WaveguideLeft1.SetParameters(1.0, distribution(gen));
+        WaveguideRight1.SetParameters(1.0, distribution(gen));
+        WaveguideLeft2.SetParameters(1.0, distribution(gen));
+        WaveguideRight2.SetParameters(1.0, distribution(gen));
     };
       
 private:
@@ -88,5 +99,38 @@ private:
     float reflectionright2 = 0.0f;
 
     float yn = 0.0f;
+
+};
+
+class WaveguideSpringReverbNetwork
+{
+
+public:
+
+    WaveguideSpringReverbNetwork() {};
+    ~WaveguideSpringReverbNetwork() {};
+
+    float ProcessSample(float xn)
+    {
+        return ((One.ProcessSample(xn)) + (Two.ProcessSample(xn)) + (Three.ProcessSample(xn)) + (Four.ProcessSample(xn)) + (Five.ProcessSample(xn)) + (Six.ProcessSample(xn)) + (Seven.ProcessSample(xn)) + (Eight.ProcessSample(xn)));
+        
+    };
+
+    void Reset(float sampleRate)
+    {
+        One.Reset(sampleRate, 0.04, 0.05, 200.f, 2000.f);
+        Two.Reset(sampleRate, 0.04, 0.05, 1000.f, 2500.f);
+        Three.Reset(sampleRate, 0.04, 0.05, 200.f, 2000.f);
+        Four.Reset(sampleRate, 0.04, 0.05, 200.f, 2200.f);
+        Five.Reset(sampleRate, 0.04, 0.05, 200.f, 2000.f);
+        Six.Reset(sampleRate, 0.04, 0.05, 500.f, 300.f);
+        Seven.Reset(sampleRate, 0.04, 0.05, 200.f, 2200.f);
+        Eight.Reset(sampleRate, 0.04, 0.05, 200.f, 2000.f);
+     
+    };
+
+private:
+    
+    WaveguideSpringReverb One, Two, Three, Four, Five, Six, Seven, Eight;
 
 };
