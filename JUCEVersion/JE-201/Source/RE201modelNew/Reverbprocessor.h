@@ -12,7 +12,7 @@ public:
     ~ReverbProcessor() {};
 
     void Reset(float sampleRate, int numChannels); 
-    void UpdateParameters(int reverbEnabled, float reverbAmount);
+    void UpdateParameters(int reverbEnabled, float reverbAmount, bool convorwaveguide);
     void ProcessBuffer(std::vector<std::vector<float>>& buffer, int blockSize);
 
 private:

@@ -282,7 +282,7 @@ void JE201AudioProcessor::updateParameters() {
     }
     
     applyDelaySettings();
-    echomodel.UpdateParameters(*Bass, *Treble, *Intensity, *RepeatRate, playheadstates, delayEnabled[*DelaySetting], *EchoVolume, reverbEnabled[*DelaySetting], *ReverbVolume, *InputLevel, *WetDry);
+    echomodel.UpdateParameters(*Bass, *Treble, *Intensity, *RepeatRate, playheadstates, delayEnabled[*DelaySetting], *EchoVolume, reverbEnabled[*DelaySetting], *ReverbVolume, *InputLevel, *WetDry, true);
     
 
 

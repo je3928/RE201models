@@ -122,10 +122,10 @@ public:
         Two.Reset(sampleRate, 0.04, 0.05, 1000.f, 2500.f);
         Three.Reset(sampleRate, 0.04, 0.05, 200.f, 2000.f);
         Four.Reset(sampleRate, 0.04, 0.05, 200.f, 2200.f);
-        Five.Reset(sampleRate, 0.04, 0.05, 200.f, 2000.f);
+        Five.Reset(sampleRate, 0.04, 0.05, 100.f, 2000.f);
         Six.Reset(sampleRate, 0.04, 0.05, 500.f, 300.f);
         Seven.Reset(sampleRate, 0.04, 0.05, 200.f, 2200.f);
-        Eight.Reset(sampleRate, 0.04, 0.05, 200.f, 2000.f);
+        Eight.Reset(sampleRate, 0.04, 0.05, 100.f, 2000.f);
      
     };
 

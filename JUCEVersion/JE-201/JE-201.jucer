@@ -70,6 +70,10 @@
                 file="Source/RE201modelNew/dependancies/CircularBuffer.h"/>
           <FILE id="FBjeci" name="OnePole.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/OnePole.h"/>
           <FILE id="sJoQWc" name="re2ir.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/re2ir.h"/>
+          <FILE id="m4rS5d" name="WaveguideSpringReverb.cpp" compile="1" resource="0"
+                file="Source/RE201modelNew/dependancies/WaveguideSpringReverb.cpp"/>
+          <FILE id="NuXubf" name="WaveguideSpringReverb.h" compile="0" resource="0"
+                file="Source/RE201modelNew/dependancies/WaveguideSpringReverb.h"/>
           <FILE id="dAKRt8" name="Reverb.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/Reverb.h"/>
           <FILE id="dm9v42" name="tapemag.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/tapemag.h"/>
           <FILE id="NSsFMm" name="vatonestack.h" compile="0" resource="0" file="Source/RE201modelNew/dependancies/vatonestack.h"/>

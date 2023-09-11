@@ -31,7 +31,7 @@ void RE201model::Reset(float sampleRate, int OSamount, int numChannels)
 
 }
 
-void RE201model::UpdateParameters(float low, float high, float intensity, float delaytime, int playheadenabled[], int delayenabled, float delayamount, int reverbenabled, float reverbamount, float inputlevel, float wetdry) 
+void RE201model::UpdateParameters(float low, float high, float intensity, float delaytime, int playheadenabled[], int delayenabled, float delayamount, int reverbenabled, float reverbamount, float inputlevel, float wetdry, bool convorwaveguide) 
 {
     ReverbEnabled = reverbenabled;
 
@@ -39,7 +39,7 @@ void RE201model::UpdateParameters(float low, float high, float intensity, float 
        // Update DSP object parameters
        ToneStack->UpdateParameters(low, high, inputlevel);
        TapeDelay->UpdateParameters(intensity, delaytime, playheadenabled, delayenabled, delayamount);
-       Reverb->UpdateParameters(reverbenabled, reverbamount);
+       Reverb->UpdateParameters(reverbenabled, reverbamount, convorwaveguide);
 
        wetDry = wetdry;
 

@@ -20,11 +20,23 @@ void ReverbProcessor::Reset(float sampleRate, int numChannels)
 
 }
 
-void ReverbProcessor::UpdateParameters(int reverbEnabled, float reverbAmount) 
+void ReverbProcessor::UpdateParameters(int reverbEnabled, float reverbAmount, bool convorwaveguide) 
 {
     // Assign plugin parameters to object for DSP
     ReverbEnabled = reverbEnabled;
     ReverbAmount = reverbAmount;
+
+    for (int channel = 0; channel < NumChannels; channel++)
+    {
+ 
+        // Reset reverb object
+        Reverb[channel]->SetReverbType(convorwaveguide);
+
+    }
+
+    
+
+  
 }
 
 
