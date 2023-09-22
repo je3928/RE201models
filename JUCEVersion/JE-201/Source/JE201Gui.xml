@@ -25,8 +25,8 @@
       </Palettes>
     </Style>
   </Styles>
-  <View id="root" resizable="1" resize-corner="1" width="1000" height="500">
-    <View class="parameters nomargin" width="800" height="480" background-color="FF10932E">
+  <View id="root" resizable="1" resize-corner="1" width="1200" height="500">
+    <View class="parameters nomargin" width="1000" height="480" background-color="FF10932E">
       <View caption="DELAY" class="group" border-color="FF000000">
         <Slider caption="Delay Setting" parameter="DelaySetting"/>
         <View>
@@ -39,6 +39,7 @@
           <Label text="JE-201" font-size="100" lookAndFeel="FoleysFinest" label-editing-text=""/>
         </View>
         <View>
+          <ComboBox parameter="ReverbType"/>
           <Slider caption="Echo Volume" parameter="EchoVolume"/>
           <Slider caption="Reverb Volume" parameter="ReverbVolume"/>
         </View>

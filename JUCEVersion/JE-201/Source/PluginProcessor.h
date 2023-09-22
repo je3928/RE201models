@@ -66,6 +66,8 @@ private:
     std::atomic<float> *InputLevel = nullptr, *WetDry = nullptr, *Bass = nullptr, *Treble = nullptr, *RepeatRate = nullptr, *Intensity = nullptr, *ReverbVolume = nullptr, *EchoVolume = nullptr;
     
     AudioParameterChoice *DelaySetting = nullptr;
+
+    AudioParameterChoice* ReverbType= nullptr;
     
     //Keep for when fixed
     //, *OSAmount = nullptr;

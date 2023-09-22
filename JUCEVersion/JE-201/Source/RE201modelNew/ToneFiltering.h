@@ -31,9 +31,13 @@ private:
     int NumChannels = 2;
     float InputLevel = 0.0f;
     
-    // Linear mapping function
-    float map(float x, float in_min, float in_max, float out_min, float out_max) {
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    double nonlinear_mapping(double x) {
+        if (x < 0.5) {
+            return 0.25 + 3 * (x / 0.5);
+        }
+        else {
+            return 1 + 3 * ((x - 0.5) / 0.5);
+        }
     }
 
 };

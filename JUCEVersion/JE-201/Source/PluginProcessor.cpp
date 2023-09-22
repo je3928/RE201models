@@ -25,7 +25,7 @@ JE201AudioProcessor::JE201AudioProcessor()
     
     FOLEYS_SET_SOURCE_PATH(__FILE__);
     
-    magicState.setGuiValueTree(BinaryData::JE201Gui_xml, BinaryData::JE201Gui_xmlSize);
+    magicState.setGuiValueTree(BinaryData::JE201GuiNew3_xml, BinaryData::JE201GuiNew3_xmlSize);
     
     // Set this processor object as a listener to the value tree
     treestate.state.addListener(this);
@@ -242,6 +242,7 @@ AudioProcessorValueTreeState::ParameterLayout JE201AudioProcessor::params() {
 
     auto mastergroup = std::make_unique<juce::AudioProcessorParameterGroup>("Master", "MASTER", "|");
 
+    mastergroup->addChild(std::make_unique<AudioParameterChoice>("ReverbType", "REVERBTYPE", StringArray("Convolution", "Waveguide"), 0));
     //mastergroup->addChild(std::make_unique<AudioParameterChoice>("OsAmount", "OSAMOUNT", StringArray("1", "2", "4", "8", "16"), 0));
     mastergroup->addChild(std::make_unique<AudioParameterFloat>("ReverbVolume", "REVERBVOLUME", 0.0f, 1.0f, 0.5f));
     mastergroup->addChild(std::make_unique<AudioParameterFloat>("EchoVolume", "ECHOVOLUME", 0.0f, 1.0f, 0.5f));
@@ -268,6 +269,7 @@ void JE201AudioProcessor::populateParameters() {
     RepeatRate = treestate.getRawParameterValue("RepeatRate");
     Intensity = treestate.getRawParameterValue("Intensity");
 
+    ReverbType = (static_cast<AudioParameterChoice*>(treestate.getParameter("ReverbType")));
     //OSAmount = (static_cast<AudioParameterChoice*>(treestate.getParameter("OsAmount")));
     ReverbVolume = treestate.getRawParameterValue("ReverbVolume");
     EchoVolume = treestate.getRawParameterValue("EchoVolume");
@@ -282,7 +284,7 @@ void JE201AudioProcessor::updateParameters() {
     }
     
     applyDelaySettings();
-    echomodel.UpdateParameters(*Bass, *Treble, *Intensity, *RepeatRate, playheadstates, delayEnabled[*DelaySetting], *EchoVolume, reverbEnabled[*DelaySetting], *ReverbVolume, *InputLevel, *WetDry, true);
+    echomodel.UpdateParameters(*Bass, *Treble, *Intensity, *RepeatRate, playheadstates, delayEnabled[*DelaySetting], *EchoVolume, reverbEnabled[*DelaySetting], *ReverbVolume, *InputLevel, *WetDry, *ReverbType);
     
 
 

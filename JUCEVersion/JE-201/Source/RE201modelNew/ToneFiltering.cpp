@@ -35,8 +35,8 @@ void ToneStackProcessor::UpdateParameters(float Bass, float Treble, float inputl
     // Check whether we are using VA or WDF model and calculate appropriate filters.
     if (!VAorWDF)
     {
-        Bass = map(Bass, 0.f, 1.f, 0.01, 0.999);
-        Treble = map(Treble, 0.f, 1.f, 0.01, 0.999);
+        Bass = nonlinear_mapping(Bass);
+        Treble = nonlinear_mapping(Treble);
         for (int channel = 0; channel < NumChannels; channel++) 
         {
             VAfilters[channel]->updateFilterCoefficients(Bass, Treble);
@@ -44,8 +44,8 @@ void ToneStackProcessor::UpdateParameters(float Bass, float Treble, float inputl
     }
     else if (VAorWDF)
     {
-        Bass = map(Bass, 0.f, 1.f, 0.025, 4.f);
-        Treble = map(Treble, 0.f, 1.f, 0.025, 4.f);
+        Bass = nonlinear_mapping(Bass);
+        Treble = nonlinear_mapping(Treble);
         for (int channel = 0; channel < NumChannels; channel++) 
         {
             WDFfilters[channel]->updateParams(Bass, Treble);
