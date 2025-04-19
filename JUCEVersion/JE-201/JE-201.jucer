@@ -8,10 +8,6 @@
     <GROUP id="{ED5759A3-DAB0-C508-A836-0266D1850FA6}" name="Source">
       <FILE id="eqCa68" name="JE201GuiNew3.xml" compile="0" resource="1"
             file="Source/JE201GuiNew3.xml"/>
-      <FILE id="slVsG5" name="JE201GuiNew2.xml" compile="0" resource="1"
-            file="Source/JE201GuiNew2.xml"/>
-      <FILE id="I7ulYo" name="JE201GuiNew.xml" compile="0" resource="1" file="Source/JE201GuiNew.xml"/>
-      <FILE id="zBtfYI" name="JE201Gui.xml" compile="0" resource="1" file="Source/JE201Gui.xml"/>
       <GROUP id="{AC407C1B-A855-7903-09E5-887A048F7D4B}" name="RE201modelNew">
         <GROUP id="{F4BEA029-B30B-5E6F-572D-1D2BB23D3C36}" name="dependancies">
           <GROUP id="{33CDC2BF-7379-B127-E3BF-6551C1D7E59A}" name="chowdsp_wdf">
